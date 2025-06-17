@@ -1,0 +1,21 @@
+# create_db.py
+
+import sqlite3
+
+# Create (or open) the database
+conn = sqlite3.connect('database/substation_data.db')
+cursor = conn.cursor()
+
+# Create the readings table
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS readings (
+        timestamp TEXT,
+        voltage INTEGER,
+        fault INTEGER
+    )
+''')
+
+conn.commit()
+conn.close()
+
+print("Database and table created successfully.")
