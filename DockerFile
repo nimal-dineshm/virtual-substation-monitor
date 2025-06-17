@@ -1,0 +1,20 @@
+# Use a lightweight Python image
+FROM python:3.10-slim
+
+# Set working directory
+WORKDIR /app
+
+# Copy all source files
+COPY . .
+
+# Install required Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expose the Modbus server port
+EXPOSE 5020
+
+# Create database directory if not present
+RUN mkdir -p database
+
+# Run the main program
+CMD ["python", "run_all.py"]
